@@ -1,354 +1,205 @@
-package Modelo;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Scanner;
+import java.util.Vector;
 
-// A Java program for Floyd Warshall All Pairs Shortest
-// Path algorithm.
-import java.util.*;
+public class Graph {
+    Vector<Vector<Object>> arrivalRoutes = new Vector<>();
+    Vector<Vector<Object>> floydVector = new Vector<>();
+    Scanner sc;
 
-import java.lang.*;
-import java.io.*;
-
-
-public class Grafos
-{
-    private ArrayList<String[]> aristas = new ArrayList<String[]>();
-    private HashMap<String, String[]> rutas;
-    private ArrayList<String> vertices = new ArrayList<String>();
-    private String graphCenter = "";
-    final static int INF = 99999;
-    static int V;
-
-    public void floydWarshall(int graph[][])
-    {
-        V = graph.length;
-
-        int dist[][] = new int[V][V];
-        int i, j, k;
-
-        /* Initialize the solution matrix
-           same as input graph matrix.
-           Or we can say the initial values
-           of shortest distances
-           are based on shortest paths
-           considering no intermediate
-           vertex. */
-        for (i = 0; i < V; i++)
-            for (j = 0; j < V; j++)
-                dist[i][j] = graph[i][j];
-
-        /* Add all vertices one by one
-           to the set of intermediate
-           vertices.
-          ---> Before start of an iteration,
-               we have shortest
-               distances between all pairs
-               of vertices such that
-               the shortest distances consider
-               only the vertices in
-               set {0, 1, 2, .. k-1} as
-               intermediate vertices.
-          ----> After the end of an iteration,
-                vertex no. k is added
-                to the set of intermediate
-                vertices and the set
-                becomes {0, 1, 2, .. k} */
-        for (k = 0; k < V; k++)
-        {
-            // Pick all vertices as source one by one
-            for (i = 0; i < V; i++)
-            {
-                // Pick all vertices as destination for the
-                // above picked source
-                for (j = 0; j < V; j++)
-                {
-                    // If vertex k is on the shortest path from
-                    // i to j, then update the value of dist[i][j]
-                    if (dist[i][k] + dist[k][j] < dist[i][j])
-                        dist[i][j] = dist[i][k] + dist[k][j];
-                }
-            }
-        }
-
-        // Print the shortest distance matrix
-        printSolution(dist);
+    public Graph(){
+        this.sc = new Scanner(System.in);
     }
-
-    void printSolution(int dist[][])
-    {
-        System.out.println("The following matrix shows the shortest "+
-                "distances between every pair of vertices");
-        for (int i=0; i<V; ++i)
-        {
-            for (int j=0; j<V; ++j)
-            {
-                if (dist[i][j]==INF)
-                    System.out.print("INF ");
-                else
-                    System.out.print(dist[i][j]+"   ");
-            }
-            System.out.println();
-        }
-    }
-
-    public void fileToGraph(String[] lines) {
-        for(String l : lines) {
-            String[] line = l.split(" ");
-            String[] inverted = l.split(" ");
-            String origen = inverted[0];
-            inverted[0] = inverted[1];
-            inverted[1] = origen;
-            if(!aristas.contains(line)) {
-                aristas.add(line);
-                aristas.add(inverted);
-            }
-            if(!vertices.contains(line[1]))
-                vertices.add(line[1]);
-            if(!vertices.contains(line[0]))
-                vertices.add(line[0]);
-        }
-        matrizAdyacencias();
-    }
-
 
     /**
-     * Se encarga de crear la matriz de adyacencia a partir de los vertices y aristas del grafo.
+     *Calculate the center of the matrix using the one created by the Floyd algorithm
+     * @param kValue
+     * @return
      */
-    private void matrizAdyacencias() {
-        Double[][] pesos = new Double[vertices.size()][vertices.size()];
-        for(int i =0; i<vertices.size();i++) {
-            int adyacencias = 0;
-            for(int j=0;j<vertices.size();j++) {
-                if(i==j)
-                    pesos[i][j] = 0.00;
-                else {
-                    boolean foundAdy = false;
-                    for(String[] a : aristas) {
-                        if(a[0].equals(vertices.get(i))&&a[1].equals(vertices.get(j))) {
-                            pesos[i][j] = Double.parseDouble(a[2]);
-                            foundAdy = true;
-                            adyacencias++;
+    public String centerCity(HashMap<String,Integer> kValue){
+        //------------------------------------
+        Vector<Object> maxVector = new Vector<>();
+        //------------------------------------
+        for(int i=0;i<kValue.size();i++){
+            Vector<Object> pos = floydVector.get(i);
+            if(i==0){
+                maxVector = pos;
+            }else{
+                for(int j=0;j<pos.size();j++){
+                    if(!maxVector.get(j).equals("NE")){
+                        if(pos.get(j).equals("NE")){
+                            maxVector.set(j,"NE");
+                        }else if((int)(maxVector.get(j))<(int)(pos.get(j))){
+                            maxVector.set(j,pos.get(j));
                         }
                     }
-                    if(!foundAdy)
-                        pesos[i][j] = Double.POSITIVE_INFINITY;
                 }
             }
         }
-        floyd(pesos);
+        //-----------------------------------
+        System.out.println(maxVector);
+        Object center = 0;
+        int contN = 0;
+        //-----------------------------------
+        while(contN < maxVector.size()){
+            if(contN == 0){
+                center = maxVector.get(0);
+            }else if(!maxVector.get(contN).equals("NE")){
+                if(center.equals("NE")){
+                    center = maxVector.get(contN);
+                }else{
+                    if((int) maxVector.get(contN) < (int) center){
+                        center = maxVector.get(contN);
+                    }
+                }
+            }
+            contN++;
+        }
+        //-----------------------------------
+        int posValue = maxVector.indexOf(center);
+        return SupportFunctions.getKeyfromValue(kValue,posValue);
     }
 
     /**
-     * Se encarga de ejecutar el algoritmo de floyd para calcular la distancia m�s corta entre dos nodos.
-     * @param pesos Matriz con los pesos de cada una de las aristas.
+     * After reading the file and creating the matrix where the weather times will be stored,
+     * the vector is created where the user selects the times they want for each city.
+     * @param initialVector
+     * @param kValue
+     * @return finalVector
      */
-    private void floyd(Double[][] pesos){
-        rutas=new HashMap<String, String[]>();
-        ArrayList<String> ruta = new ArrayList<String>();
-        for(int i=0;i<vertices.size();i++) {
-            for(int j=0;j<vertices.size();j++) {
-                if(i==j) {
-                    ruta = new ArrayList<String>();
-                    ruta.add("0");
-                    rutas.put(vertices.get(j)+", "+vertices.get(i), ruta.toArray(new String[ruta.size()]));
+    public Vector<Vector<Object>> makeTheFistVector(Vector<Vector<Object>> initialVector, HashMap<String,Integer> kValue){
+        Vector<Vector<Object>> finalVector =  new Vector<Vector<Object>>(); //Create vector
+        for(int i=0;i<initialVector.size();i++){
+            Vector<Object> startCity = initialVector.get(i);
+            Vector<Object> NstartCity = new Vector<>();
+            //Create the vector where the user will select the type of weather they want
+            int cont = 0;
+            for(int j=0;j<startCity.size();j++){
+                if(cont == i){
+                    NstartCity.add(0);
+                }else{
+                    Object element = startCity.get(j);
+                    //If the element is a list, it means that the user needs to be asked what they want here.
+                    if(element instanceof List){
+                        List<String> weather = (List<String>) element;
+                        System.out.println("De "+SupportFunctions.getKeyfromValue(kValue,i)+" a "+SupportFunctions.getKeyfromValue(kValue,j)+" que clima hay?");
+                        System.out.println("0) Clima Normal\n1) Con lluvia\n2) Con Nieve\n3) Con Tormenta");
+                        String opc = sc.nextLine();
+                        int typeW = 0;
+                        if(opc.equals("0") || opc.equals("1") || opc.equals("2") || opc.equals("3")){
+                            typeW = Integer.parseInt(opc);
+                        }
+                        NstartCity.add(Integer.parseInt(weather.get(typeW)));
+                    }else{
+                        //If it's not a list, it means there's no path
+                        NstartCity.add("NE");
+                    }
                 }
-                else {
-                    for(int k=0;k<vertices.size();k++) {
-                        if(k!=i && k!=j) {
-                            ruta = new ArrayList<String>();
-                            String viaje = vertices.get(j) + ", "+vertices.get(k);
-                            double newRoute = pesos[j][i]+pesos[i][k];
-                            if(newRoute<pesos[j][k]) {
-                                pesos[j][k]=newRoute;
-                                ruta.add(((Double)newRoute).toString());
-                                getIntermediateCities(ruta, vertices.get(j)+", "+vertices.get(i));
-                                ruta.add(vertices.get(i));
-                            }else {
-                                if(!rutas.containsKey(viaje))
-                                    ruta.add(((Double)pesos[j][k]).toString());
+                cont++;
+            }
+            //Add vector to create the new matrix
+            finalVector.add(NstartCity);
+        }
+        for(int l = 0; l<initialVector.size();l++){
+            System.out.println(SupportFunctions.getKeyfromValue(kValue,l)+": "+finalVector.get(l));
+        }
+        return finalVector;
+    }
+
+    /**
+     * Using the Floyd algorithm, two new matrices are created.
+     * One stores the distance of the shortest routes,
+     * and the other stores the names of the cities that must be traversed to reach the destination
+     * by the shortest distance.
+     *
+     * @param finalVector
+     * @param kValue
+     * @return
+     */
+    public Vector<Vector<Object>> floydAlgorithm(Vector<Vector<Object>> finalVector, HashMap<String,Integer> kValue){
+        //----------------------------------------------------------------
+        Vector<Vector<Object>> shortRoute =  new Vector<Vector<Object>>();
+        Vector<Vector<Object>> cities =  new Vector<Vector<Object>>(); //Create the matrix for the routes between the cities.
+        //----------------------------------------------------------------
+        int cont = 0;
+        for(int i = 0;i<finalVector.size();i++){
+            //----------------------------------------------------------------
+            //Create a copy to not affect the original matrix
+            Vector<Object> ci = new Vector<>();
+            for(int j=0;j<kValue.size();j++){
+                if(cont==j){
+                    ci.add(0);
+                }else{
+                    ci.add(SupportFunctions.getKeyfromValue(kValue,j));
+                }
+            }
+            cont++;
+            cities.add(ci);
+            //----------------------------------------------------------------
+        }
+
+        //----------------------------------------------------------------
+        for (int i = 0;i<finalVector.size();i++){
+            Vector<Object> destino = finalVector.get(i);
+            Vector<Object> copia = new Vector<>();
+            for(int j=0;j<destino.size();j++){
+                copia.add(destino.get(j));
+            }
+            shortRoute.add(copia);
+        }
+        //----------------------------------------------------------------
+
+        System.out.println(shortRoute);
+
+        System.out.println(cities);
+
+        //----------------------------------------------------------------
+        //Floyd
+        for(int k=0;k<kValue.size();k++){
+            for(int i=0;i<kValue.size();i++){
+                if(k != i){
+                    for(int j=0;j<kValue.size();j++){
+                        if(k != j){
+                            if(!(shortRoute.get(i).get(k).equals("NE"))){
+                                int n1 = (int) shortRoute.get(i).get(k);
+                                if(!(shortRoute.get(k).get(j).equals("NE"))){
+                                    int n2 = (int) shortRoute.get(k).get(j);
+                                    int sum = n1+n2;
+                                    if((shortRoute.get(i).get(j).equals("NE"))){
+                                        shortRoute.get(i).set(j,sum);
+                                        cities.get(i).set(j,SupportFunctions.getKeyfromValue(kValue,k));
+                                    } else if (sum < (int)(shortRoute.get(i).get(j))) {
+                                        shortRoute.get(i).set(j,sum);
+                                        cities.get(i).set(j,SupportFunctions.getKeyfromValue(kValue,k));
+                                    }
+                                }
                             }
-                            if(ruta.size()>0)
-                                rutas.put(viaje, ruta.toArray(new String[ruta.size()]));
                         }
                     }
                 }
             }
+            //----------------------------------------------------------------
+            System.out.println("K = "+k);
+            System.out.println(shortRoute);
+            System.out.println(cities);
+            System.out.println("------\n");
         }
-        graphCenter(pesos);
+        System.out.println(shortRoute);
+        System.out.println(cities);
+        //----------------------------------------------------------------
+        arrivalRoutes = cities;
+        floydVector = shortRoute;
+        //----------------------------------------------------------------
+        return floydVector;
     }
 
-    /**
-     * Permite determinar las ciudades intermedias de una ruta.
-     * @param ruta Almacena las diferentes rutas entre ciudades.
-     * @param key Identificador de la ruta.
-     */
-    private void getIntermediateCities(ArrayList<String> ruta, String key) {
-        if (rutas.containsKey(key)) {
-            String[] info = rutas.get(key);
-            for(int i =1;i<info.length;i++) {
-                ruta.add(info[i]);
-            }
-        }
+    public Vector<Vector<Object>> getFloydVector(){
+        return this.floydVector;
     }
 
-    /**
-     * Permite ejecutar el algoritmo y seleccionar la ruta mas corta entre dos ciudades.
-     * @param origen Nombre de la ciudad de origen.
-     * @param destino Nombre de la ciudad de destino.
-     * @return String. Ruta de llegada mas corta.
-     */
-    public String shorterRoute(String origen, String destino) {
-        String viaje = origen+", "+destino;
-        if(origen.equals(destino))
-            return "Se esta dirigiendo a la misma ciudad, la ruta es 0km";
-        if(rutas.containsKey(viaje)) {
-            String ruta = "";
-            ruta = "Ruta: "+rutas.get(viaje)[0];
-            ruta += rutas.get(viaje).length>1 ? " km\n"+"Ciudades intermedias: "+intermediateCities(rutas.get(viaje)) : " km";
-            return ruta;
-        }else
-            return "No se encontr� una ruta";
-    }
-
-    /**
-     * Se encarga de generar un String con cada una de las ciudades intermedias de una ruta.
-     * @param cities Arreglo que contiene diferentes nombres de ciudades.
-     * @return String Ciudades intermedias.
-     */
-    private String intermediateCities(String[] cities) {
-        String iCities = "";
-        for(int i = 1;i<cities.length;i++)
-            iCities += cities[i] + ", ";
-        return iCities.substring(0, iCities.length()-2);
-    }
-
-    /**
-     * Se encarga de calcular el centro del grafo.
-     * @param pesos Matriz con los pesos de cada arista.
-     */
-    public void graphCenter(Double[][] pesos) {
-        Double[] eccentricities = new Double[vertices.size()];
-        for(int i=0;i<vertices.size();i++) {
-            for(int j=0;j<vertices.size();j++) {
-                if(eccentricities[j]==null)
-                    eccentricities[j]=pesos[i][j];
-                else if (pesos[i][j]>eccentricities[j])
-                    eccentricities[j]=pesos[i][j];
-            }
-        }
-        int min = eccentricities[0].intValue();
-        graphCenter = vertices.get(0);
-        for(int i=0;i<vertices.size();i++) {
-            if(eccentricities[i]<min) {
-                min = eccentricities[i].intValue();
-                graphCenter = vertices.get(i);
-            }
-        }
-    }
-
-    /**
-     * Metodo getter del centro del grafo.
-     * @return String. Centro del grafo.
-     */
-    public String getGraphCenter() {
-        return this.graphCenter;
-    }
-
-    /**
-     * Permite la eliminaci�n de una arista entre dos nodos (ruta entre dos ciudades).
-     * @param origen Ciudad de origen.
-     * @param destino Ciudad de destino.
-     * @return String. Mensaje de respuesta.
-     */
-    public String breakRoute(String origen, String destino) {
-        String[] ruta = null;
-        String[] inverted = null;
-        for(String[] a : aristas) {
-            if(a[0].equals(origen) && a[1].equals(destino))
-                ruta = a;
-            if(a[1].equals(origen) && a[0].equals(destino))
-                inverted = a;
-        }
-        if(ruta != null) {
-            aristas.remove(ruta);
-            aristas.remove(inverted);
-            try {
-                matrizAdyacencias();
-                return "Ruta eliminada correctamente, se han recalculado las rutas mas cortas.";
-            } catch (Exception e) {
-                return "Ha ocurrido un error al tratar de eliminar esta ruta.";
-            }
-        }else
-            return"No se ha encontrado la ruta especificada.";
-    }
-
-    /**
-     * Permite crear nodos (si las ciudades de origen o destino no existen) y establecer relaciones(rutas) entre ellos.
-     * @param origen Nombre de la ciudad de origen.
-     * @param destino Nombre de la ciudad de destino.
-     * @param peso Peso (Km) de la arista.
-     * @return String. Mensaje de respuesta.
-     */
-    public String newRoute(String origen, String destino, int peso){
-        String[] ruta = null;
-        String[] inverted = null;
-        int indexA = -1;
-        int indexB = -1;
-        for(int i=0;i<aristas.size();i++) {
-            String[] arista = aristas.get(i);
-            if(arista[0].equals(origen) && arista[1].equals(destino)) {
-                ruta = arista;
-                indexA = i;
-            }
-            if(arista[1].equals(origen) && arista[0].equals(destino)) {
-                inverted = arista;
-                indexB = i;
-            }
-        }
-        if(ruta != null) {
-            if(Integer.parseInt(ruta[2])<peso)
-                return "Ya existe una ruta entre estas ciudades, con una distancia menor.";
-            else {
-                aristas.get(indexA)[2] = String.valueOf(peso);
-                aristas.get(indexB)[2] = String.valueOf(peso);
-                try {
-                    matrizAdyacencias();
-                    return "Ya existe una ruta entre estas ciudades, se ha modificado la distancia.";
-                } catch (Exception e) {
-                    return "Ha ocurrido un error al actualizar el grafo.";
-                }
-            }
-        }else {
-            String[] newRoute = {origen,destino,String.valueOf(peso)};
-            String[] invertedNew = {destino,origen,String.valueOf(peso)};
-            aristas.add(newRoute);
-            aristas.add(invertedNew);
-            vertices.add(origen);
-            vertices.add(destino);
-            try {
-                matrizAdyacencias();
-                return "Ruta agregada. Se han recalculado las rutas mas cortas.";
-            }catch(Exception e) {
-                return "Incluir esta ruta convertiria al grafo en no convexo, se ha omitido la accion.";
-            }
-        }
-    }
-
-    /**
-     * Reescribe el archivo guategrafo.txt con la informacion generada en la ejecucion.
-     * @throws IOException
-     */
-    public void rewriteFile() throws IOException {
-        ArrayList<String> parejas = new ArrayList<String>();
-        for(String[] a : aristas) {
-            String viaje = a[0] + ", "+a[1];
-            String invertedViaje = a[1]+", "+a[0];
-            if(!parejas.contains(viaje) && !parejas.contains(invertedViaje))
-                Reader.writeFile(a[0] + " " + a[1] + " "+a[2]+"\n");
-            parejas.add(viaje);
-            parejas.add(invertedViaje);
-        }
+    public Vector<Vector<Object>> getArrivalRoutes(){
+        return this.arrivalRoutes;
     }
 
 }
-
-// Contributed by Aakash Hasija
-
