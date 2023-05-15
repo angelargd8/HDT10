@@ -58,7 +58,7 @@ public class Graph {
         }
         //-----------------------------------
         int posValue = maxVector.indexOf(center);
-        return SupportFunctions.getKeyfromValue(kValue,posValue);
+        return .getKeyfromValue(kValue,posValue);
     }
 
     /**
@@ -83,7 +83,7 @@ public class Graph {
                     //If the element is a list, it means that the user needs to be asked what they want here.
                     if(element instanceof List){
                         List<String> weather = (List<String>) element;
-                        System.out.println("De "+SupportFunctions.getKeyfromValue(kValue,i)+" a "+SupportFunctions.getKeyfromValue(kValue,j)+" que clima hay?");
+                        System.out.println("De "+.getKeyfromValue(kValue,i)+" a "+.getKeyfromValue(kValue,j)+" que clima hay?");
                         System.out.println("0) Clima Normal\n1) Con lluvia\n2) Con Nieve\n3) Con Tormenta");
                         String opc = sc.nextLine();
                         int typeW = 0;
@@ -102,7 +102,7 @@ public class Graph {
             finalVector.add(NstartCity);
         }
         for(int l = 0; l<initialVector.size();l++){
-            System.out.println(SupportFunctions.getKeyfromValue(kValue,l)+": "+finalVector.get(l));
+            System.out.println(.getKeyfromValue(kValue,l)+": "+finalVector.get(l));
         }
         return finalVector;
     }
@@ -131,7 +131,7 @@ public class Graph {
                 if(cont==j){
                     ci.add(0);
                 }else{
-                    ci.add(SupportFunctions.getKeyfromValue(kValue,j));
+                    ci.add(.getKeyfromValue(kValue,j));
                 }
             }
             cont++;
@@ -168,10 +168,10 @@ public class Graph {
                                     int sum = n1+n2;
                                     if((shortRoute.get(i).get(j).equals("NE"))){
                                         shortRoute.get(i).set(j,sum);
-                                        cities.get(i).set(j,SupportFunctions.getKeyfromValue(kValue,k));
+                                        cities.get(i).set(j,.getKeyfromValue(kValue,k));
                                     } else if (sum < (int)(shortRoute.get(i).get(j))) {
                                         shortRoute.get(i).set(j,sum);
-                                        cities.get(i).set(j,SupportFunctions.getKeyfromValue(kValue,k));
+                                        cities.get(i).set(j,.getKeyfromValue(kValue,k));
                                     }
                                 }
                             }
