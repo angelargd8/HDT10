@@ -1,62 +1,30 @@
 package src.Vista;
 
+import src.Controlador.Controlador;
+
+import java.util.ArrayList;
+
 public class Menu {
     Vista vista;
-    //Controlador controlador;
-    int opcion=0;
+    Controlador controlador;
+    int opcion = 0;
 
-    public MostrarMenu(){
+    public Menu(){
         vista = new Vista();
-        listasDe = new Vista();
-        //controlador= new Controlador();
-        ArrayList<Integer> prueba = new ArrayList<Integer>();
-        
+        controlador= new Controlador();
     }
     public void MostrarPrograma(){
-        vista.Mensaje(); 
-        
-        
+        while(true){
+            vista.Mensaje("Bienvenido al programa \n Elija la ciudad de origen: ");
+            vista.Mensaje(controlador.mostrarCiudades());
+            int opi = vista.SeleccioneMenu("Opcion: ");
+            vista.Mensaje("Elija la ciudad destino: ");
+            vista.Mensaje(controlador.mostrarCiudades());
+            int opi2 = vista.SeleccioneMenu("Opcion: ");
+            vista.Mensaje("Cual es el clima: \n 1) Normal \n 2) Lluvia \n 3) Nieve \n 4) Tormenta ");
+            int opiclima = vista.SeleccioneMenu("Opcion: ");
+            controlador.caminoCorto(opiclima+2, opi+1, opi2+1);
 
-        while (opcion!=8){
-            opcion= vista.SeleccioneMenu("\nBienvenido al \n Ingrese una opción:\n1.  \n2.  \n3. \n4.  \n5. \n6. \n7. \n8. salir");
-/////////////1. //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            if (opcion==1){
-            }
-/////////////2. //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            try{
-                if (opcion==2){
-                }
-    /////////// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                else if (opcion==3){
-                    
-
-                }
-    /////////////.  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-                else if (opcion==4){
-                    
-                    
-                }
-    //////////////.  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-                else if (opcion==5){
-                    
-                }
-    //////////////6. /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-                else if (opcion==6){
-                    
-                }
-    ///////////// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                else if (opcion==7){
-                    
-
-                }
-            /////salir//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-            }catch (Exception e){
-                vista.validacion();
-            }
         }
 
   

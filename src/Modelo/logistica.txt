@@ -8,3 +8,4 @@ Quito Guatemala 30 15 20 30
 Lima Guatemala 50 70 20 50
 SaoPaulo Lima 15 20 20 10
 Lima BuenosAires 30 30 35 40
+Guatemala BuenosAires 10 20 30 40

@@ -1,4 +1,5 @@
-package Vista;
+package src.Vista;
+import src.Vista.Teclado;
 
 
 //package CVista;
@@ -18,9 +19,8 @@ public class Vista {
         //controlador= new Controlador();
     }
 
-    public void Mensaje(){
-        System.out.println("\n\n - Presione Enter para ingresar -");
-        leer.nextLine();
+    public void Mensaje(String m){
+        System.out.println(m);
     }
 
     /** 

@@ -1,10 +1,7 @@
 package src.Modelo;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Scanner;
+import java.util.*;
 
 public class Reader {
     // aqui puede cambiar la ruta
@@ -72,13 +69,22 @@ public class Reader {
         }
     }
 
+    /**
+     * Obtiene las llaves (ciudades) de la matriz
+     * @return lista de las ciudades
+     */
+    public Set<String> getKeys(){
+        Set<String> keys = keysMap.keySet();
+        return keys;
+    }
+
 
     /**
      * Genera la matriz de adyacencia
      * @param weatherIndex Número del 2 al 5 que representa el clima
      * @return devuelve una matriz de adyacencia según el clima
      */
-    public Integer[][] makeMatrix(int weatherIndex){
+    public Integer[][] makeMatrix(Integer weatherIndex){
         Integer size = keysMap.size();
         Integer[][] matrix = createEmptyMatrix(size);
 

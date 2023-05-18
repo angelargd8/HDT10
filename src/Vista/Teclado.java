@@ -1,4 +1,4 @@
-package Vista;
+package src.Vista;
 
 //Para validar los espacios de los nombres o apellidos 
 //Modulos:
@@ -9,7 +9,6 @@ public class Teclado {
 
     public Teclado() {
         leer = new Scanner(System.in);
-        
     }
 
     
