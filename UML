@@ -1,9 +1,87 @@
-<mxfile host="app.diagrams.net" modified="2023-05-18T04:12:54.416Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36 Edg/113.0.1774.42" version="21.3.1" etag="RhiU-k5EBOB2TeQpASUh" type="github">
+<mxfile host="app.diagrams.net" modified="2023-05-18T05:41:02.376Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36 Edg/113.0.1774.42" etag="giz7KGF8XjtAwFHwqHtz" version="21.3.1" type="github">
   <diagram name="Página-1" id="VKu5nXGDBx25KsTLoSR9">
-    <mxGraphModel>
+    <mxGraphModel dx="1017" dy="476" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="WyqFrU7IO-C2hj5980Ih-1" value="Main" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="80" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="WyqFrU7IO-C2hj5980Ih-2" value="+&amp;nbsp;static void main(String[] args)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="WyqFrU7IO-C2hj5980Ih-1">
+          <mxGeometry y="26" width="140" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="WyqFrU7IO-C2hj5980Ih-22" value="Floyd" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="810" y="540" width="300" height="470" as="geometry" />
+        </mxCell>
+        <mxCell id="WyqFrU7IO-C2hj5980Ih-23" value="# vertices: int&lt;br&gt;# matrizAdyacencia: long&lt;br&gt;# i, j, k : int&lt;br&gt;# camino[][] : String&lt;br&gt;# CaminosAuxiliares[][] : String&lt;br&gt;#&amp;nbsp;CaminoRecorrido : String&lt;br&gt;#&amp;nbsp;cadena: String&lt;br&gt;# TodosLosCaminos : String&lt;br&gt;# StringMinimo: String&lt;br&gt;# temp1: float&lt;br&gt;# temp2: float&lt;br&gt;# temp3: float&lt;br&gt;# temp4: float&lt;br&gt;# mínimo: float&lt;br&gt;# temp1Camino: float&lt;br&gt;# temp2Camino: float&lt;br&gt;# temp3Camino: float&lt;br&gt;# DistanciasMaximasVertices: int[]&lt;br&gt;# centro:int&lt;br&gt;# VerticeDistanciaMaximaMinima: long" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="WyqFrU7IO-C2hj5980Ih-22">
+          <mxGeometry y="26" width="300" height="304" as="geometry" />
+        </mxCell>
+        <mxCell id="WyqFrU7IO-C2hj5980Ih-24" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="WyqFrU7IO-C2hj5980Ih-22">
+          <mxGeometry y="330" width="300" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="WyqFrU7IO-C2hj5980Ih-25" value="+ algoritmoDeFloyd(long[][]matrizAdyacente): String&lt;br&gt;&lt;br&gt;- MostrarCaminos(long[][] matrizAdyacente): void&lt;br&gt;&lt;br&gt;- CaminosR(int i, int k, String[][] caminosAuxiliares, String caminoRecorrido, int jota)&lt;br&gt;&lt;br&gt;+ CentroDelGrafo(long[][] matrizAdyacente):int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="WyqFrU7IO-C2hj5980Ih-22">
+          <mxGeometry y="338" width="300" height="132" as="geometry" />
+        </mxCell>
+        <mxCell id="WyqFrU7IO-C2hj5980Ih-26" value="Reader" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="790" y="240" width="300" height="260" as="geometry" />
+        </mxCell>
+        <mxCell id="WyqFrU7IO-C2hj5980Ih-27" value="-&amp;nbsp; PATH: String&lt;br&gt;-&amp;nbsp; lines: ArrayList&amp;lt;String[]&amp;gt;&lt;br&gt;-&amp;nbsp; sc: Scanner&lt;br&gt;- file: File&lt;br&gt;- KeysMap: HashMap&amp;lt;String, String&amp;gt;&lt;br&gt;# matrix: Integer[][]&lt;br&gt;# size: Integer&lt;br&gt;# key: HashSet&amp;lt;String&amp;gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="WyqFrU7IO-C2hj5980Ih-26">
+          <mxGeometry y="26" width="300" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="WyqFrU7IO-C2hj5980Ih-28" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="WyqFrU7IO-C2hj5980Ih-26">
+          <mxGeometry y="160" width="300" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="WyqFrU7IO-C2hj5980Ih-29" value="+ Reader()&lt;br&gt;- readFile(): ArrayList &amp;lt;String[]&amp;gt;&lt;br&gt;- setKeys(): void&lt;br&gt;- makeMatrix(int weatherIndex): Integer[][]&lt;br&gt;- createEmptyMatrix (int size): Integer[][]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="WyqFrU7IO-C2hj5980Ih-26">
+          <mxGeometry y="168" width="300" height="92" as="geometry" />
+        </mxCell>
+        <mxCell id="WyqFrU7IO-C2hj5980Ih-30" value="Controlador" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="10" y="190" width="300" height="260" as="geometry" />
+        </mxCell>
+        <mxCell id="WyqFrU7IO-C2hj5980Ih-31" value="-&amp;nbsp; PATH: String&lt;br&gt;-&amp;nbsp; lines: ArrayList&amp;lt;String[]&amp;gt;&lt;br&gt;-&amp;nbsp; sc: Scanner&lt;br&gt;- file: File&lt;br&gt;- KeysMap: HashMap&amp;lt;String, String&amp;gt;&lt;br&gt;# matrix: Integer[][]&lt;br&gt;# size: Integer&lt;br&gt;# key: HashSet&amp;lt;String&amp;gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="WyqFrU7IO-C2hj5980Ih-30">
+          <mxGeometry y="26" width="300" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="WyqFrU7IO-C2hj5980Ih-32" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="WyqFrU7IO-C2hj5980Ih-30">
+          <mxGeometry y="160" width="300" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="WyqFrU7IO-C2hj5980Ih-33" value="+ Reader()&lt;br&gt;- readFile(): ArrayList &amp;lt;String[]&amp;gt;&lt;br&gt;- setKeys(): void&lt;br&gt;- makeMatrix(int weatherIndex): Integer[][]&lt;br&gt;- createEmptyMatrix (int size): Integer[][]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="WyqFrU7IO-C2hj5980Ih-30">
+          <mxGeometry y="168" width="300" height="92" as="geometry" />
+        </mxCell>
+        <mxCell id="WyqFrU7IO-C2hj5980Ih-34" value="Menu" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="410" y="190" width="300" height="260" as="geometry" />
+        </mxCell>
+        <mxCell id="WyqFrU7IO-C2hj5980Ih-35" value="-&amp;nbsp; PATH: String&lt;br&gt;-&amp;nbsp; lines: ArrayList&amp;lt;String[]&amp;gt;&lt;br&gt;-&amp;nbsp; sc: Scanner&lt;br&gt;- file: File&lt;br&gt;- KeysMap: HashMap&amp;lt;String, String&amp;gt;&lt;br&gt;# matrix: Integer[][]&lt;br&gt;# size: Integer&lt;br&gt;# key: HashSet&amp;lt;String&amp;gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="WyqFrU7IO-C2hj5980Ih-34">
+          <mxGeometry y="26" width="300" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="WyqFrU7IO-C2hj5980Ih-36" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="WyqFrU7IO-C2hj5980Ih-34">
+          <mxGeometry y="160" width="300" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="WyqFrU7IO-C2hj5980Ih-37" value="+ Reader()&lt;br&gt;- readFile(): ArrayList &amp;lt;String[]&amp;gt;&lt;br&gt;- setKeys(): void&lt;br&gt;- makeMatrix(int weatherIndex): Integer[][]&lt;br&gt;- createEmptyMatrix (int size): Integer[][]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="WyqFrU7IO-C2hj5980Ih-34">
+          <mxGeometry y="168" width="300" height="92" as="geometry" />
+        </mxCell>
+        <mxCell id="WyqFrU7IO-C2hj5980Ih-38" value="Vista" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="10" y="530" width="300" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="WyqFrU7IO-C2hj5980Ih-39" value="# leer: Scanner&lt;br&gt;# in:Teclado&lt;br&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="WyqFrU7IO-C2hj5980Ih-38">
+          <mxGeometry y="26" width="300" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="WyqFrU7IO-C2hj5980Ih-40" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="WyqFrU7IO-C2hj5980Ih-38">
+          <mxGeometry y="70" width="300" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="WyqFrU7IO-C2hj5980Ih-41" value="+ Vista()&lt;br&gt;+Mensaj: void&lt;br&gt;+ SeleccioneMenu:int&lt;br&gt;+ SeleccionMenuString&lt;br&gt;+ validacion:void&lt;br&gt;+ validacion2: void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="WyqFrU7IO-C2hj5980Ih-38">
+          <mxGeometry y="78" width="300" height="92" as="geometry" />
+        </mxCell>
+        <mxCell id="WyqFrU7IO-C2hj5980Ih-42" value="Teclado" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="990" width="300" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="WyqFrU7IO-C2hj5980Ih-43" value="# leer: Scanner&lt;br&gt;# string1: String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="WyqFrU7IO-C2hj5980Ih-42">
+          <mxGeometry y="26" width="300" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="WyqFrU7IO-C2hj5980Ih-44" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="WyqFrU7IO-C2hj5980Ih-42">
+          <mxGeometry y="80" width="300" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="WyqFrU7IO-C2hj5980Ih-45" value="Teclado()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="WyqFrU7IO-C2hj5980Ih-42">
+          <mxGeometry y="88" width="300" height="32" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
