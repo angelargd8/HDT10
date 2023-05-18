@@ -1,3 +1,10 @@
 BuenosAires SaoPaulo 10 15 20 50
 BuenosAires Lima 15 20 30 70
 Lima Quito 10 12 15 20
+Quito SaoPaulo 30 15 40 10
+Guatemala BuenosAires 50 40 60 70
+Lima SaoPaulo 10 15 10 20
+Quito Guatemala 30 15 20 30
+Lima Guatemala 50 70 20 50
+SaoPaulo Lima 15 20 20 10
+Lima BuenosAires 30 30 35 40
