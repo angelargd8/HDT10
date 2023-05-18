@@ -99,16 +99,19 @@ public class Floyd {
                     // (es decir que no sea 0)
                     //que a no se este señalando a si misma
                     if(i != j){
-                        if (Caminos[i][j].equals("")){
-                            if( i == c1 && j == c2){
+                        if( i == c1-2 && j == c2-2){
+
+                            if (Caminos[i][j].equals("")){
+                               // TodosLosCaminos += " De ("+ (i+1) + " --> "+(j+1)+") ir por: ("+(i+1)+" , "+ (j+1)+")\n";
+
                                 TodosLosCaminos += " De ("+ (list.get(i)) + " --> "+(list.get(j))+") ir por: ("+(list.get(i))+" , "+ (list.get(j))+")\n";
+
+                            }else{
+                                //esta parte es innecesaria porque no se tienen que mostrar todos los caminos
+                                String NoEsNecesarioMostrarTodosLosCaminosEntoncesMeCuido="";
+                                TodosLosCaminos += " De ("+ (i+1) + " --> "+(j+1)+") ir por: ("+(i+1)+" , "+ Caminos[i][j]+ ","+ (j+1)+ ")\n";
+
                             }
-
-                        }else{
-                            //esta parte es innecesaria porque no se tienen que mostrar todos los caminos
-                            String NoEsNecesarioMostrarTodosLosCaminosEntoncesMeCuido="";
-                            ///TodosLosCaminos += " De ("+ (i+1) + " --> "+(j+1)+") ir por: ("+(i+1)+" , "+ Caminos[i][j]+ ","+ (j+1)+ ")\n";
-
                         }
 
                     }
@@ -205,7 +208,7 @@ public class Floyd {
 
         //3. El centro del grafo es el vértice con la menor excentricidad.
 
-        for (int i = 0; i < vertices; i++) {
+        for (int i = 1; i < vertices; i++) {
 
             if (DistanciasMaximasVertices[i] < VerticeDistanciaMaximaMinima) {
                 VerticeDistanciaMaximaMinima = DistanciasMaximasVertices[i];
