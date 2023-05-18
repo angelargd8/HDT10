@@ -7,7 +7,8 @@ import java.util.HashSet;
 import java.util.Scanner;
 
 public class Reader {
-    private final String PATH = "./src/logistica.txt";
+    // aqui puede cambiar la ruta
+    private final String PATH = "C:\\Users\\fagui\\Documents\\Francis\\2023\\UVG\\Tercer semestre\\Algoritmos\\HT10\\HDT10\\src\\Modelo\\logistica.txt";
     private ArrayList<String[]> lines = new ArrayList<String[]>();
     private Scanner sc;
     private File file;

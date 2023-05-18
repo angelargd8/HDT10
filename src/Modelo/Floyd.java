@@ -1,4 +1,4 @@
-
+package src.Modelo;
 /*
  * LA PARTE DEL ALGORITMO DE FLOYD ESTA SACADA DE:
  * https://www.youtube.com/watch?v=YmzLYdILMd4
@@ -12,7 +12,7 @@
 public class Floyd {
     //metodos para determinar todos los caminos del algoritmo de floyd
 
-    public String algoritmoDeFloyd(long[][] matrizAdyacente){
+    public String algoritmoDeFloyd(long[][] matrizAdyacente, int c1, int c2){
 
 
         int vertices = matrizAdyacente.length;   //para obtener la cantidad de vertices de la matriz
@@ -26,7 +26,7 @@ public class Floyd {
         String CaminoRecorrido ="", cadena= "", TodosLosCaminos= "", StringMinimo="";
 
 
-        int i, j,k; //indices
+        int i, j, k; //indices
 
         float temp1, temp2, temp3,temp4, minimo;
 
@@ -59,16 +59,12 @@ public class Floyd {
                             CaminoRecorrido="";
                             CaminosAuxiliares[i][j]= k +"";
                             Caminos[i][j] = CaminosR(i, k, CaminosAuxiliares, CaminoRecorrido, (k+1));
-
                         }
-
                     }
                     //cuando ya regrese hace un casta para que que soporte el numero
                     //pasa de int a long
                     matrizAdyacencia[i][j]= (long) minimo;
                 }
-
-
             }
         }
         //agregar el camino minimo a la cadena
@@ -97,9 +93,9 @@ public class Floyd {
                     //que a no se este señalando a si misma
                     if(i != j){
                         if (Caminos[i][j].equals("")){
-                            TodosLosCaminos += " De ("+ (i+1) + " --> "+(j+1)+") ir por: ("+(i+1)+" , "+ (j+1)+")\n";
-
-
+                            if( i == c1 && j == c2){
+                                TodosLosCaminos += " De ("+ (i+1) + " --> "+(j+1)+") ir por: ("+(i+1)+" , "+ (j+1)+")\n";
+                            }
 
                         }else{
                             //esta parte es innecesaria porque no se tienen que mostrar todos los caminos

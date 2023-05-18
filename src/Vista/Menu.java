@@ -1,5 +1,5 @@
-package Vista;
+package src.Vista;
 
-public class Menu
-{
+public class Menu {
+
 }

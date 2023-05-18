@@ -1,4 +1,4 @@
-package Controlador;
+package src.Controlador;
 
 public class Controlador {
 }
