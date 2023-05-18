@@ -9,8 +9,15 @@ package src.Modelo;
  *
  */
 
+import java.util.*;
+
 public class Floyd {
     //metodos para determinar todos los caminos del algoritmo de floyd
+    //
+    Reader r = new Reader();
+    Set<String> keys = r.getKeys();
+    List<String> list = new ArrayList<>(keys);
+
 
     public String algoritmoDeFloyd(long[][] matrizAdyacente, int c1, int c2){
 
@@ -94,7 +101,7 @@ public class Floyd {
                     if(i != j){
                         if (Caminos[i][j].equals("")){
                             if( i == c1 && j == c2){
-                                TodosLosCaminos += " De ("+ (i+1) + " --> "+(j+1)+") ir por: ("+(i+1)+" , "+ (j+1)+")\n";
+                                TodosLosCaminos += " De ("+ (list.get(i)) + " --> "+(list.get(j))+") ir por: ("+(list.get(i))+" , "+ (list.get(j))+")\n";
                             }
 
                         }else{
