@@ -92,7 +92,7 @@ public class Reader {
             Integer index1 = keysMap.get(array[0]);
             Integer index2 = keysMap.get(array[1]);
 
-            Integer weight = Integer.parseInt(array[weatherIndex]);
+            Integer weight = Integer.parseInt(array[weatherIndex+1]);
             matrix[index1][index2] = weight;
 
         }
