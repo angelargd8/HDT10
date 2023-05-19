@@ -1,5 +1,15 @@
 package src.Modelo;
 
+/*
+ * LA PARTE DEL ALGORITMO DE FLOYD ESTA SACADA DE:
+ * https://www.youtube.com/watch?v=YmzLYdILMd4
+ *
+ * PARA CALCULAR EL CENTRO ESTA BASADO EN:
+ * https://www.geeksforgeeks.org/floyd-warshall-algorithm-dp-16/
+ *
+ *
+ */
+
 public class FloydAlgoritmo {
 
     private int[][] caminos;
@@ -81,6 +91,65 @@ public class FloydAlgoritmo {
         //System.out.println(caminito + pathBuilder.toString());
         return caminito + pathBuilder.toString()  + pesoR;
 
+    }
+
+    public int[][] getCaminos(){
+        return caminos;
+    }
+
+    public static String CentroDelGrafo(String[] ciudades, int[][] Caminos){
+        int vertices = Caminos.length;
+
+        float temp1Caminos, temp2Caminos, temp3Caminos;
+
+        //recorrer a base del algoritmo de floyd
+        for (int k = 0; k < vertices; k++) {
+            for (int i = 0; i < vertices; i++) {
+                for (int j = 0; j < vertices; j++) {
+                    temp1Caminos= Caminos[i][k];
+                    temp2Caminos= Caminos[k][j];
+                    temp3Caminos= Caminos[i][j];
+
+                    if (temp1Caminos != 1000000000 && temp2Caminos != 1000000000 && temp1Caminos + temp2Caminos < temp3Caminos) {
+                        temp3Caminos = temp1Caminos + temp2Caminos;
+                    }
+                }
+
+            }
+        }
+
+        //encontrar la distancia max de los vertices
+        int[] DistanciasMaximasVertices = new int[vertices];
+
+        for (int i = 0; i < vertices; i++) {
+            int DistanciasMaxima= 0;
+
+            for (int j = 0; j < vertices; j++) {
+                if (Caminos[i][j] > DistanciasMaxima && Caminos[i][j] != 1000000000) {
+                    DistanciasMaxima = Caminos[i][j];
+                }
+
+            }
+            DistanciasMaximasVertices[i] = DistanciasMaxima;
+        }
+
+
+        // Encontrar el vértice con la distancia máxima mínima
+        int centro = 0;
+        long VerticeDistanciaMaximaMinima = 1000000000;
+
+        //3. El centro del grafo es el vértice con la menor excentricidad.
+
+        for (int i = 0; i < vertices; i++) {
+
+            if (DistanciasMaximasVertices[i] < VerticeDistanciaMaximaMinima) {
+                VerticeDistanciaMaximaMinima = DistanciasMaximasVertices[i];
+                centro = i;
+            }
+
+        }
+
+        return "\nEl centro esta en: "+ ciudades[centro];
     }
 
 

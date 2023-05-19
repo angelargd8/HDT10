@@ -61,7 +61,7 @@ public class Controlador {
      */
     public String caminoCorto(int clima, int c1, int c2){
         f.floyd(r.makeMatrix(clima));
-        return f.printShortestPath(ciudades,c1, c2);
+        return f.printShortestPath(ciudades,c1, c2) + f.CentroDelGrafo(ciudades,f.getCaminos());
     }
 
 
