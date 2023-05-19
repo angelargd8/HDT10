@@ -1,4 +1,4 @@
-package src.Vista;
+package CVista;
 
 public class Main {
     public static void main(String[] args){

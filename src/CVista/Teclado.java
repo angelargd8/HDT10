@@ -1,5 +1,4 @@
-package src.Vista;
-
+package CVista;
 //Para validar los espacios de los nombres o apellidos 
 //Modulos:
 import java.util.Scanner;
