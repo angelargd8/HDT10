@@ -1,4 +1,4 @@
-package CVista;
+package src.Vista;
 
 import src.Controlador.Controlador;
 

@@ -1,5 +1,5 @@
-package CVista;
-import src.CVista.Teclado;
+package src.Vista;
+import src.Vista.Teclado;
 
 
 //package CVista;
