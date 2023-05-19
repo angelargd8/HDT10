@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Reader {
     // aqui puede cambiar la ruta
-    private final String PATH = "C:\\Users\\angel\\OneDrive\\Escritorio\\HDT10\\src\\Modelo\\logistica.txt";
+    private final String PATH = "logistica.txt";
     private ArrayList<String[]> lines = new ArrayList<String[]>();
     private Scanner sc;
     private File file;
